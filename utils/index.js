@@ -4,13 +4,13 @@
  * @Since 2020/2/3
  */
 
-import Lru from 'lru-cache';
+const Lru = require('lru-cache');
 
 const cache = new Lru({
 	max   : 2000,
 	maxAge: 1000 * 60 * 60 * 2 // 2h
 });
 
-export default {
+module.exports = {
 	cache
-}
+};
