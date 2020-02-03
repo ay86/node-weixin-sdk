@@ -1,0 +1,33 @@
+{
+  "name": "node-weixin-sdk",
+  "version": "0.1.0",
+  "description": "Weixin (WeChat) Node serve SDK",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "lru-cache": "^5.1.1",
+    "xml2js": "^0.4.23",
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "form-data": "^3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ay86/node-weixin-sdk.git"
+  },
+  "keywords": [
+    "weixin-api",
+    "weixin-sdk",
+    "wechat-api"
+  ],
+  "author": "AngusYoung",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ay86/node-weixin-sdk/issues"
+  },
+  "homepage": "https://github.com/ay86/node-weixin-sdk#readme"
+}
