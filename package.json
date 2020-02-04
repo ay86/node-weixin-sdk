@@ -1,17 +1,15 @@
 {
   "name": "node-weixin-sdk",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Weixin (WeChat) Node serve SDK",
   "main": "index.js",
   "dependencies": {
     "axios": "^0.19.2",
+    "form-data": "^3.0.0",
     "lru-cache": "^5.1.1",
-    "xml2js": "^0.4.23",
-    "crypto": "^1.0.1"
+    "xml2js": "^0.4.23"
   },
-  "devDependencies": {
-    "form-data": "^3.0.0"
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

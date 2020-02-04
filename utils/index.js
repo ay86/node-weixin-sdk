@@ -11,6 +11,9 @@ const cache = new Lru({
 	maxAge: 1000 * 60 * 60 * 2 // 2h
 });
 
+const WXBizDataCrypt = require('./WXBizDataCrypt');
+
 module.exports = {
-	cache
+	cache,
+	WXBizDataCrypt
 };
