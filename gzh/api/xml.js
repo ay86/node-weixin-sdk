@@ -4,7 +4,7 @@
  * @Since 2020/2/3
  */
 
-const xml2js = require('xml2js');
+const util = require('../../utils');
 
 module.exports = function ({type = 'text', gzhName, userOpenId, content = ''}) {
 	let _xml = {
@@ -23,6 +23,5 @@ module.exports = function ({type = 'text', gzhName, userOpenId, content = ''}) {
 		default:
 			_xml['Content'] = content;
 	}
-	const xmlBuilder = new xml2js.Builder({headless: true, rootName: 'xml', cdata: true});
-	return xmlBuilder.buildObject(_xml);
+	return util.xmlBuilder.buildObject(_xml);
 };

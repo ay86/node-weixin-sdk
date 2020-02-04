@@ -1,12 +1,13 @@
 /**
  * @Author Angus <angusyoung@mrxcool.com>
- * @Description Weixin (WeChat) SDK
+ * @Description Weixin (WeChat) Node serve SDK
  * @Since 2020/2/3
  */
 
 const GzhSDK = require('./gzh');
 const WebSDK = require('./web');
 const WxaSDK = require('./wxa');
+const PaySDK = require('./pay');
 
 class Gzh extends GzhSDK {
 	constructor(config) {
@@ -26,12 +27,19 @@ class Wxa extends WxaSDK {
 	}
 }
 
+class Pay extends PaySDK {
+	constructor(config) {
+		super(config);
+	}
+}
+
 class WxSDK {
 	constructor(config) {
 		Object.assign(this.config, {}, config);
 		this.gzh = new Gzh(this.config);
 		this.web = new Web(this.config);
 		this.wxa = new Wxa(this.config);
+		this.pay = new Pay(this.config);
 	}
 
 	get getConfig() {
