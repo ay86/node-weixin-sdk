@@ -8,6 +8,8 @@ const redirect = require('./api/redirect');
 const token = require('./api/token');
 const checkToken = require('./api/check-token');
 const userInfo = require('./api/user-info');
+const getTicket = require('./api/get-ticket');
+const jsSdkConfig = require('./api/js-sdk-config');
 
 class WebSDK {
 	constructor(config) {
@@ -18,6 +20,8 @@ class WebSDK {
 	token = token;
 	checkToken = checkToken;
 	userInfo = userInfo;
+	getTicket = getTicket;
+	jsSdkConfig = jsSdkConfig;
 }
 
 module.exports = WebSDK;

@@ -12,7 +12,7 @@ module.exports = function () {
 	return this.token().then(
 		sToken => {
 			return new Promise((resolve, reject) => {
-				const sTicket = cache.get('ticket');
+				const sTicket = cache.get('web.ticket');
 				// 检查 ticket 是否过期
 				if (!sTicket) {
 					axios.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket', {
@@ -26,7 +26,7 @@ module.exports = function () {
 								reject(jRes);
 							}
 							else {
-								cache.set('ticket', jRes.ticket, (jRes.expires_in - 100) * 1000);
+								cache.set('web.ticket', jRes.ticket, (jRes.expires_in - 100) * 1000);
 								resolve(jRes.ticket);
 							}
 						},

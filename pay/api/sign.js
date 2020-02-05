@@ -4,7 +4,7 @@
  * @Since 2020/2/4
  */
 
-const crypto = require('crypto');
+const util = require('../../utils');
 
 module.exports = function (oParam) {
 	const conf = this.config;
@@ -16,5 +16,5 @@ module.exports = function (oParam) {
 	}
 	let sResult = aResult.sort().join('&');
 	sResult += '&key=' + conf.pay.mchKey;
-	return crypto.createHash('md5').update(sResult).digest('hex').toUpperCase();
+	return util.md5(sResult);
 };

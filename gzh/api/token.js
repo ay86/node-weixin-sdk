@@ -13,7 +13,7 @@ const cache = util.cache;
 module.exports = function () {
 	const conf = this.config;
 	return new Promise((resolve, reject) => {
-		const sAccessToken = cache.get('accessToken');
+		const sAccessToken = cache.get('gzh.accessToken');
 		if (!sAccessToken) {
 			axios.get('https://api.weixin.qq.com/cgi-bin/token', {
 				params: {
@@ -27,7 +27,7 @@ module.exports = function () {
 						reject(jRes);
 					}
 					else {
-						cache.set('accessToken', jRes.access_token, 7000 * 1000);
+						cache.set('gzh.accessToken', jRes.access_token, 7000 * 1000);
 						resolve(jRes.access_token);
 					}
 				},

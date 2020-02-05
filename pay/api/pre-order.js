@@ -47,7 +47,7 @@ module.exports = function (orderInfo
 						if (jXml['return_code'] === 'SUCCESS' && jXml['result_code'] === 'SUCCESS') {
 							const _config = {
 								appId    : conf.appId,
-								timeStamp: Math.round(new Date().getTime() / 1000).toString(),
+								timeStamp: util.wxTimestamp(),
 								nonceStr : util.randomString(),
 								package  : 'prepay_id=' + jXml['prepay_id'],
 								signType : 'MD5'

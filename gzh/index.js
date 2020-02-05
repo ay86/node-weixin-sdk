@@ -7,7 +7,6 @@
 const sign = require('./api/sign');
 const token = require('./api/token');
 const userInfo = require('./api/user-info');
-const getTicket = require('./api/get-ticket');
 const createTempQr = require('./api/create-temp-qrcode');
 const createQr = require('./api/create-qrcode');
 const getQrImg = require('./api/get-qrcode-image');
@@ -23,7 +22,6 @@ class GzhSDK {
 	sign = sign;
 	token = token;
 	userInfo = userInfo;
-	getTicket = getTicket;
 	createTempQr = createTempQr;
 	createQr = createQr;
 	getQrImg = getQrImg;
