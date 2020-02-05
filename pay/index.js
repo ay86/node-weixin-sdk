@@ -4,7 +4,6 @@
  * @Since 2019-05-18
  */
 
-const path = require('path');
 const fs = require('fs');
 
 const paySign = require('./api/sign');
@@ -18,7 +17,7 @@ class WxPaySDK {
 	constructor(config) {
 		this.config = config;
 		if (this.config.pay.certPath) {
-			this.certFile = fs.readFileSync(path.resolve(__dirname, this.config.pay.certPath));
+			this.certFile = fs.readFileSync(this.config.pay.certPath);
 		}
 	}
 

@@ -27,7 +27,7 @@ module.exports = function (apiList = [''], url = '', debugMode = false) {
 				jsApiConfig.signature = util.sha1(_sign);
 				resolve(jsApiConfig);
 			},
-			() => reject()
+			error => reject(error)
 		);
 	});
 };
