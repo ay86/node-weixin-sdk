@@ -22,8 +22,8 @@ module.exports = function (request) {
 				if (err) {
 					return reject(null);
 				}
-				if (xmlResult.return_code === 'SUCCESS') {
-					const checkData = Object.assign({}, xmlResult);
+				if (xmlResult.xml.return_code === 'SUCCESS') {
+					const checkData = Object.assign({}, xmlResult.xml);
 					const encodeStr = checkData.req_info;
 					const key = util.md5(conf.pay.mchKey).toLowerCase();
 					const decodeStr = util.PKCS7Padding(encodeStr, key);
@@ -36,7 +36,7 @@ module.exports = function (request) {
 					});
 				}
 				else {
-					reject({error: xmlResult.return_msg});
+					reject({error: xmlResult.xml.return_msg});
 				}
 			});
 		});
