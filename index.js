@@ -40,10 +40,20 @@ class WxSDK {
 		this.web = new Web(this.config);
 		this.wxa = new Wxa(this.config);
 		this.pay = new Pay(this.config);
+		this.gzh.$root = this;
+		this.web.$root = this;
+		this.wxa.$root = this;
+		this.pay.$root = this;
 	}
 
-	get getConfig() {
-		return this.config;
+	getConfig(childName) {
+		const allConfig = {
+			GZH: this.gzh.config,
+			WEB: this.web.config,
+			WXA: this.wxa.config,
+			PAY: this.pay.config
+		};
+		return childName ? allConfig[childName] : allConfig;
 	}
 
 	config = {

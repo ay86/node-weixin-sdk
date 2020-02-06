@@ -6,15 +6,15 @@
 
 const axios = require('axios');
 
-module.exports = function (sOpenId) {
+module.exports = function (openid, lang = 'zh_CN') {
 	return this.token().then(
-		sToken => {
+		token => {
 			return new Promise((resolve, reject) => {
 				axios.get('https://api.weixin.qq.com/cgi-bin/user/info', {
 					params: {
-						access_token: sToken,
-						openid      : sOpenId,
-						lang        : 'zh_CN'
+						access_token: token,
+						openid      : openid,
+						lang        : lang
 					}
 				}).then(
 					({data: jRes}) => {

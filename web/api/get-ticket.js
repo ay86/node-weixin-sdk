@@ -9,11 +9,10 @@ const util = require('../../utils');
 const cache = util.cache;
 
 module.exports = function () {
-	return this.token().then(
+	return this.$root.gzh.token().then(
 		sToken => {
 			return new Promise((resolve, reject) => {
 				const sTicket = cache.get('web.ticket');
-				// 检查 ticket 是否过期
 				if (!sTicket) {
 					axios.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket', {
 						params: {

@@ -16,7 +16,11 @@ const send = require('./api/send');
 
 class GzhSDK {
 	constructor(config) {
-		this.config = config;
+		this.config = Object.assign({}, config);
+	}
+
+	setConfig(config) {
+		Object.assign(this.config, config);
 	}
 
 	sign = sign;

@@ -21,13 +21,13 @@
 
 const axios = require('axios');
 
-module.exports = function (token, openId) {
+module.exports = function (token, openid, lang = 'zh_CN') {
 	return new Promise((resolve, reject) => {
 		axios.get('https://api.weixin.qq.com/sns/userinfo', {
 			params: {
 				access_token: token,
-				openid      : openId,
-				lang        : 'zh_CN'
+				openid      : openid,
+				lang        : lang
 			}
 		}).then(
 			({data: jRes}) => {

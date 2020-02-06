@@ -15,7 +15,16 @@ const refund = require('./api/refund');
 
 class WxPaySDK {
 	constructor(config) {
-		this.config = config;
+		this.config = Object.assign({}, config);
+		this.loadCert();
+	}
+
+	setConfig(config) {
+		Object.assign(this.config, config);
+		this.loadCert();
+	}
+
+	loadCert() {
 		if (this.config.pay.certPath) {
 			this.certFile = fs.readFileSync(this.config.pay.certPath);
 		}
