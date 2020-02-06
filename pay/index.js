@@ -12,6 +12,8 @@ const fission = require('./api/fission');
 const merchantPay = require('./api/merchant-pay');
 const preOrder = require('./api/pre-order');
 const refund = require('./api/refund');
+const notify = require('./api/notify');
+const refundNotify = require('./api/refund-notify');
 
 class WxPaySDK {
 	constructor(config) {
@@ -36,6 +38,8 @@ class WxPaySDK {
 	merchantPay = merchantPay;
 	preOrder = preOrder;
 	refund = refund;
+	notify = notify;
+	refundNotify = refundNotify;
 }
 
 module.exports = WxPaySDK;

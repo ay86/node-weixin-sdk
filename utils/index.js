@@ -17,6 +17,12 @@ const WXBizDataCrypt = require('./WXBizDataCrypt');
 const xmlBuilder = new xml2js.Builder({headless: true, rootName: 'xml', cdata: true});
 const xmlParser = xml2js.parseString;
 
+function PKCS7Padding(sData, sKey) {
+	const deCipher = crypto.createDecipheriv('aes-256-ecb', sKey, "");
+	// deCipher.setAutoPadding(true);
+	return deCipher.update(sData, 'base64', 'utf8') + deCipher.final('utf8');
+}
+
 function sha1(source) {
 	return crypto.createHash('sha1')
 		.update(source, 'utf-8').digest('hex');
@@ -57,6 +63,7 @@ module.exports = {
 	xmlParser,
 	sha1,
 	md5,
+	PKCS7Padding,
 	WXBizDataCrypt,
 	randomString,
 	orderNum,
