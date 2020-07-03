@@ -1,6 +1,7 @@
 /**
  * @Author Angus <angusyoung@mrxcool.com>
- * @Description 获取 JS SDK 的配置
+ * @Description 获取 JS SDK 的配置（实际上这是公众号开放的接口，但是应用是在网页应用上）
+ * @Group gzh
  * @Since 2020/2/4
  */
 

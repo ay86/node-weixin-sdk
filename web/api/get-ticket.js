@@ -1,6 +1,7 @@
 /**
  * @Author Angus <angusyoung@mrxcool.com>
- * @Description 获取授权凭证
+ * @Description 获取授权凭证（实际上这是公众号开放的接口，但是应用是在网页应用上）
+ * @Group gzh
  * @Since 2020/2/3
  */
 

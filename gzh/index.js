@@ -13,6 +13,7 @@ const getQrImg = require('./api/get-qrcode-image');
 const putMaterial = require('./api/put-material');
 const xml = require('./api/xml');
 const send = require('./api/send');
+const sendTemplateMsg = require('./api/send-template-message');
 
 class GzhSDK {
 	constructor(config) {
@@ -32,6 +33,7 @@ class GzhSDK {
 	putMaterial = putMaterial;
 	xml = xml;
 	send = send;
+	sendTemplateMsg = sendTemplateMsg;
 
 	noop() {
 		return new Promise(resolve => {
