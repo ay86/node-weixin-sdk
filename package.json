@@ -1,6 +1,6 @@
 {
   "name": "node-weixin-sdk",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Weixin (WeChat) Node serve SDK",
   "main": "index.js",
   "dependencies": {
@@ -9,7 +9,6 @@
     "lru-cache": "^5.1.1",
     "xml2js": "^0.4.23"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
