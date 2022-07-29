@@ -7,7 +7,7 @@
 const sign = require('./api/sign');
 const token = require('./api/token');
 const getWXACodeUnlimit = require('./api/create-temp-wxacode');
-const getPhone = require('./api/get-phone');
+const decryptData = require('./api/decrypt-data');
 const sendSubscribeMsg = require('./api/send-subscribe-message');
 const sendTemplateMsg = require('./api/send-template-message');
 
@@ -23,7 +23,11 @@ class WxaSDK {
 	sign = sign;
 	token = token;
 	getWXACodeUnlimit = getWXACodeUnlimit;
-	getPhone = getPhone;
+
+	// 兼容旧版本存在的方法
+	getPhone = decryptData;
+
+	decryptData = decryptData;
 	sendSubscribeMsg = sendSubscribeMsg;
 	sendTemplateMsg = sendTemplateMsg;
 

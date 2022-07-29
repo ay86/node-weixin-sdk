@@ -60,10 +60,18 @@ module.exports = function (orderInfo
 							});
 						}
 						else {
-							reject({
-								errcode: jXml['return_code'],
-								errmsg : jXml['return_msg']
-							});
+							if(jXml['return_code'] === 'SUCCESS'){
+								reject({
+									errcode: jXml['err_code'],
+									errmsg : jXml['err_code_des']
+								});
+							}
+							else {
+								reject({
+									errcode: jXml['return_code'],
+									errmsg : jXml['return_msg']
+								});
+							}
 						}
 					}
 				});

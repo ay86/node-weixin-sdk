@@ -1,6 +1,6 @@
 /**
  * @Author Angus <angusyoung@mrxcool.com>
- * @Description 获取微信手机号
+ * @Description 解密加密数据
  * @Since 2020/2/4
  */
 
