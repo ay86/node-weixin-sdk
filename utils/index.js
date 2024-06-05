@@ -6,7 +6,7 @@
 
 const crypto = require('crypto');
 const xml2js = require('xml2js');
-const Lru = require('lru-cache');
+const {LRUCache: Lru} = require('lru-cache');
 
 const cache = new Lru({
 	max   : 5000,
@@ -25,12 +25,12 @@ function PKCS7Padding(sData, sKey) {
 
 function sha1(source) {
 	return crypto.createHash('sha1')
-		.update(source, 'utf-8').digest('hex');
+			.update(source, 'utf-8').digest('hex');
 }
 
 function md5(sResult) {
 	return crypto.createHash('md5')
-		.update(sResult).digest('hex').toUpperCase();
+			.update(sResult).digest('hex').toUpperCase();
 }
 
 function randomString(nLen = 30) {
