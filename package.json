@@ -1,6 +1,6 @@
 {
   "name": "node-weixin-sdk",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Weixin (WeChat) Node serve SDK",
   "main": "index.js",
   "dependencies": {
