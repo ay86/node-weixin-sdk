@@ -8,6 +8,9 @@ const util = require('../../utils');
 
 module.exports = (req) => {
 	return new Promise((resolve, reject) => {
+		if (Object.keys(req.body).length) {
+			return resolve(req.body);
+		}
 		let data = '';
 		req.on('data', chuck => {
 			data += chuck;
