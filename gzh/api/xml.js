@@ -6,8 +6,8 @@
 
 const util = require('../../utils');
 
-module.exports = function ({type = 'text', gzhName, userOpenId, content = ''}) {
-	let _xml = {
+module.exports = function({type = 'text', gzhName, userOpenId, content = ''}) {
+	const xml = {
 		'ToUserName'  : userOpenId,
 		'FromUserName': gzhName,
 		'CreateTime'  : Math.round(new Date().getTime() / 1000),
@@ -15,13 +15,54 @@ module.exports = function ({type = 'text', gzhName, userOpenId, content = ''}) {
 	};
 	switch (type) {
 		case 'image':
+			Object.assign(xml, {
+				Image: {
+					MediaId: content.id
+				}
+			});
+			break;
 		case 'voice':
+			Object.assign(xml, {
+				Voice: {
+					MediaId: content.id
+				}
+			});
+			break;
 		case 'video':
+			Object.assign(xml, {
+				Video: {
+					MediaId    : content.id,
+					Title      : content.title,
+					Description: content.description
+				}
+			});
+			break;
 		case 'music':
+			Object.assign(xml, {
+				Music: {
+					Title       : content.title,
+					Description : content.description,
+					MusicUrl    : content.url,
+					HQMusicUrl  : content.hqUrl,
+					ThumbMediaId: content.id
+				}
+			});
+			break;
 		case 'news':
+			Object.assign(xml, {
+				ArticleCount: 1,
+				Articles    : [
+					{
+						Title      : content.title,
+						Description: content.description,
+						PicUrl     : content.picUrl,
+						Url        : content.url
+					}
+				]
+			});
 			break;
 		default:
-			_xml['Content'] = content;
+			xml['Content'] = content;
 	}
-	return util.xmlBuilder.buildObject(_xml);
+	return util.xmlBuilder.buildObject(xml);
 };
