@@ -8,14 +8,14 @@ const util = require('../../utils');
 
 async function parseXml(data) {
 	if (data.substring(0, 5) === '<xml>') {
-		return new Promise((resolve, reject) => {
+		return await (new Promise((resolve, reject) => {
 			util.xmlParser(data, {trim: true, explicitArray: false}, (err, xmlResult) => {
 				if (err) {
 					return reject(err);
 				}
 				resolve(xmlResult.xml);
 			});
-		})
+		}));
 	}
 	else {
 		return JSON.parse(data);
