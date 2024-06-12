@@ -25,12 +25,12 @@ function PKCS7Padding(sData, sKey) {
 
 function sha1(source) {
 	return crypto.createHash('sha1')
-			.update(source, 'utf-8').digest('hex');
+		.update(source, 'utf-8').digest('hex');
 }
 
 function md5(sResult) {
 	return crypto.createHash('md5')
-			.update(sResult).digest('hex').toUpperCase();
+		.update(sResult).digest('hex').toUpperCase();
 }
 
 function randomString(nLen = 30) {
