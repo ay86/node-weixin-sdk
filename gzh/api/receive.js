@@ -30,9 +30,9 @@ module.exports = function(req) {
 			if ('Encrypt' in data) {
 				// 验证签名
 				const token = sdk.config.token;
-				const arr = [token, req.params.timestamp, req.params.nonce, data.Encrypt];
+				const arr = [token, req.query.timestamp, req.query.nonce, data.Encrypt];
 				const checkStr = arr.sort().join('');
-				if (req.params['msg_signature'] !== util.sha1(checkStr)) {
+				if (req.query['msg_signature'] !== util.sha1(checkStr)) {
 					return reject({errcode: 40178, errmsg: '签名错误'});
 				}
 				// 解密
