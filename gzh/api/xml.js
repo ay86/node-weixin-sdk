@@ -7,7 +7,7 @@
 const util = require('../../utils');
 
 module.exports = function({type = 'text', gzhName, userOpenId, content = ''}) {
-	const xml = {
+	let xml = {
 		'ToUserName'  : userOpenId,
 		'FromUserName': gzhName,
 		'CreateTime'  : Math.round(new Date().getTime() / 1000),
@@ -60,6 +60,9 @@ module.exports = function({type = 'text', gzhName, userOpenId, content = ''}) {
 					}
 				]
 			});
+			break;
+		case 'encrypt':
+			xml = {...content};
 			break;
 		default:
 			xml['Content'] = content;
