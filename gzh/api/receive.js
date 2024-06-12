@@ -6,16 +6,16 @@
 
 const util = require('../../utils');
 
-async function parseXml(data) {
+function parseXml(data) {
 	if (data.substring(0, 5) === '<xml>') {
-		return await (new Promise((resolve, reject) => {
+		return new Promise((resolve, reject) => {
 			util.xmlParser(data, {trim: true, explicitArray: false}, (err, xmlResult) => {
 				if (err) {
 					return reject(err);
 				}
 				resolve(xmlResult.xml);
 			});
-		}));
+		})
 	}
 	else {
 		return JSON.parse(data);
@@ -25,7 +25,7 @@ async function parseXml(data) {
 module.exports = function(req) {
 	const sdk = this;
 	return new Promise((resolve, reject) => {
-		function checkData(data) {
+		async function checkData(data) {
 			// 如果是加密的数据先验证
 			if ('Encrypt' in data) {
 				// 验证签名
@@ -41,7 +41,7 @@ module.exports = function(req) {
 					reject(err);
 				}
 				else {
-					resolve(parseXml(result.content));
+					resolve(await parseXml(result.content));
 				}
 			}
 			else {
@@ -57,8 +57,8 @@ module.exports = function(req) {
 		req.on('data', chuck => {
 			data += chuck;
 		});
-		req.on('end', () => {
-			checkData(parseXml(data));
+		req.on('end', async () => {
+			checkData(await parseXml(data));
 		});
 		req.on('error', () => {
 			reject();
