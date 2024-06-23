@@ -12,6 +12,8 @@ const createTempQr = require('./api/create-temp-qrcode');
 const createQr = require('./api/create-qrcode');
 const getQrImg = require('./api/get-qrcode-image');
 const putMaterial = require('./api/put-material');
+const getMaterial = require('./api/get-material');
+const voiceToText = require('./api/voice2text');
 const xml = require('./api/xml');
 const send = require('./api/send');
 const sendTemplateMsg = require('./api/send-template-message');
@@ -35,6 +37,8 @@ class GzhSDK {
 	createQr = createQr;
 	getQrImg = getQrImg;
 	putMaterial = putMaterial;
+	getMaterial = getMaterial;
+	voiceToText = voiceToText;
 	xml = xml;
 	send = send;
 	sendTemplateMsg = sendTemplateMsg;
