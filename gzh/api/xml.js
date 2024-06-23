@@ -53,10 +53,12 @@ module.exports = function({type = 'text', gzhName, userOpenId, content = ''}) {
 				ArticleCount: 1,
 				Articles    : [
 					{
-						Title      : content.title,
-						Description: content.description,
-						PicUrl     : content.picUrl,
-						Url        : content.url
+						item: {
+							Title      : content.title,
+							Description: content.description,
+							PicUrl     : content.picUrl,
+							Url        : content.url
+						}
 					}
 				]
 			});
