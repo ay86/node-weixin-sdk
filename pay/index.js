@@ -4,7 +4,7 @@
  * @Since 2019-05-18
  */
 
-const fs = require('fs');
+const fs = require('node:fs');
 
 const paySign = require('./api/sign');
 const redPacket = require('./api/red-packet');
@@ -12,6 +12,7 @@ const fission = require('./api/fission');
 const merchantPay = require('./api/merchant-pay');
 const preOrder = require('./api/pre-order');
 const refund = require('./api/refund');
+const native = require('./api/v3/native');
 const notify = require('./api/notify');
 const refundNotify = require('./api/refund-notify');
 
@@ -30,6 +31,9 @@ class WxPaySDK {
 		if (this.config.pay.certPath) {
 			this.certFile = fs.readFileSync(this.config.pay.certPath);
 		}
+		if (this.config.pay.privatePath) {
+			this.privateKey = fs.readFileSync(this.config.pay.privatePath);
+		}
 	}
 
 	paySign = paySign;
@@ -38,6 +42,7 @@ class WxPaySDK {
 	merchantPay = merchantPay;
 	preOrder = preOrder;
 	refund = refund;
+	native = native;
 	notify = notify;
 	refundNotify = refundNotify;
 }

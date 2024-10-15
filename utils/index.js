@@ -4,7 +4,7 @@
  * @Since 2020/2/3
  */
 
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 const xml2js = require('xml2js');
 const {LRUCache: Lru} = require('lru-cache');
 
@@ -25,12 +25,12 @@ function PKCS7Padding(sData, sKey) {
 
 function sha1(source) {
 	return crypto.createHash('sha1')
-		.update(source, 'utf-8').digest('hex');
+			.update(source, 'utf-8').digest('hex');
 }
 
 function md5(sResult) {
 	return crypto.createHash('md5')
-		.update(sResult).digest('hex').toUpperCase();
+			.update(sResult).digest('hex').toUpperCase();
 }
 
 function randomString(nLen = 30) {
@@ -57,10 +57,31 @@ function wxTimestamp() {
 	return Math.round(new Date().getTime() / 1000).toString();
 }
 
+function v3Sign(api, body) {
+	const data = ['POST'];
+	const timestamp = wxTimestamp();
+	const nonce = randomString();
+	data.push(api);
+	data.push(timestamp);
+	data.push(nonce);
+	data.push(JSON.stringify(body));
+	const source = data.join('\n') + '\n';
+	// 使用商户私钥对待签名串进行SHA256 with RSA签名
+	const sign = crypto.createSign('RSA-SHA256');
+	sign.update(source);
+	const signature = sign.sign(this.privateKey, 'base64');
+	return {
+		'timestamp': timestamp,
+		'nonce'    : nonce,
+		'sign'     : signature
+	};
+}
+
 module.exports = {
 	cache,
 	xmlBuilder,
 	xmlParser,
+	v3Sign,
 	sha1,
 	md5,
 	PKCS7Padding,

@@ -56,6 +56,8 @@ class WxSDK {
 		return childName ? allConfig[childName] : allConfig;
 	}
 
+	apiDomain = 'https://api.mch.weixin.qq.com';
+
 	config = {
 		appId : '',
 		secret: '',
@@ -66,10 +68,12 @@ class WxSDK {
 		pay: {
 			mchId       : '', // 微信支付商户号
 			mchKey      : '', // 微信支付 API key
+			serialNo    : '', // API 证书序列号
 			serverIp    : '', // 服务器 IP
 			payNotify   : '', // 支付结果通知 URL
 			refundNotify: '', // 退款结果通知 URL
-			certPath    : ''  // 支付证书本地存放路径
+			certPath    : '', // 支付证书本地存放路径
+			privatePath : ''  // 支付私钥本地存放路径
 		}
 	};
 }
