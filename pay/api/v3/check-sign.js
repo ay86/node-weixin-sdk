@@ -4,6 +4,8 @@
  * @Since 2024/10/17
  */
 
+const crypto = require('node:crypto');
+
 module.exports = function(request) {
 	if (!request) {
 		return Promise.reject({errcode: 400, errmsg: '请求参数错误'});
@@ -17,7 +19,7 @@ module.exports = function(request) {
 		return Promise.reject({errcode: 400, errmsg: '签名超时'});
 	}
 	// 获取证书并解密数据来验证签名
-	this.getCert(serialNo).then(
+	return this.getCert(serialNo).then(
 			certData => {
 				const data = [];
 				data.push(timestamp);

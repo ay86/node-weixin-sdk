@@ -21,7 +21,7 @@ module.exports = function(serialNo) {
 				if (cert) {
 					return fs.readFileSync(cert.filename);
 				}
-				return Promise.reject({errcode: 500, errmsg: '证书不存在'});
+				return Promise.reject({errcode: 500, errmsg: `证书${ serialNo }不存在`});
 			}
 	);
 }
