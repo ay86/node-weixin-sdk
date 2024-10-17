@@ -15,12 +15,20 @@ const refund = require('./api/refund');
 const native = require('./api/v3/native');
 const notify = require('./api/notify');
 const refundNotify = require('./api/refund-notify');
+const signHeader = require('./api/v3/sign');
+const downloadWxCert = require('./api/v3/downWxCert');
+const getCert = require('./api/v3/get-cert');
+const checkSign = require('./api/v3/check-sign');
+const decrypt = require('./api/v3/decrypt');
+const notifyV3 = require('./api/v3/notify');
 
 class WxPaySDK {
 	constructor(config) {
 		this.config = Object.assign({}, config);
 		this.loadCert();
 	}
+
+	apiDomain = 'https://api.mch.weixin.qq.com';
 
 	setConfig(config) {
 		Object.assign(this.config, config);
@@ -43,8 +51,14 @@ class WxPaySDK {
 	preOrder = preOrder;
 	refund = refund;
 	native = native;
-	notify = notify;
+	notifyOld = notify;
 	refundNotify = refundNotify;
+	signHeader = signHeader;
+	downloadWxCert = downloadWxCert;
+	getCert = getCert;
+	checkSign = checkSign;
+	decrypt = decrypt;
+	notify = notifyV3;
 }
 
 module.exports = WxPaySDK;

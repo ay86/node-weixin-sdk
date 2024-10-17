@@ -17,6 +17,17 @@ const WXBizDataCrypt = require('./WXBizDataCrypt');
 const xmlBuilder = new xml2js.Builder({headless: true, rootName: 'xml', cdata: true});
 const xmlParser = xml2js.parseString;
 
+function aes256gcmDecrypt(ciphertext, key, iv, aad) {
+	// AEAD_AES_256_GCM 解密
+	const encryptedData = Buffer.from(ciphertext, 'base64');
+	const authTag = encryptedData.slice(-16);
+	const data = encryptedData.slice(0, -16);
+	const decipher = crypto.createDecipheriv('aes-256-gcm', key, iv);
+	decipher.setAuthTag(authTag);
+	decipher.setAAD(aad);
+	return decipher.update(data, 'base64', 'utf8');
+}
+
 function PKCS7Padding(sData, sKey) {
 	const deCipher = crypto.createDecipheriv('aes-256-ecb', sKey, "");
 	// deCipher.setAutoPadding(true);
@@ -57,31 +68,11 @@ function wxTimestamp() {
 	return Math.round(new Date().getTime() / 1000).toString();
 }
 
-function v3Sign(api, body) {
-	const data = ['POST'];
-	const timestamp = wxTimestamp();
-	const nonce = randomString();
-	data.push(api);
-	data.push(timestamp);
-	data.push(nonce);
-	data.push(JSON.stringify(body));
-	const source = data.join('\n') + '\n';
-	// 使用商户私钥对待签名串进行SHA256 with RSA签名
-	const sign = crypto.createSign('RSA-SHA256');
-	sign.update(source);
-	const signature = sign.sign(this.privateKey, 'base64');
-	return {
-		'timestamp': timestamp,
-		'nonce'    : nonce,
-		'sign'     : signature
-	};
-}
-
 module.exports = {
 	cache,
 	xmlBuilder,
 	xmlParser,
-	v3Sign,
+	aes256gcmDecrypt,
 	sha1,
 	md5,
 	PKCS7Padding,

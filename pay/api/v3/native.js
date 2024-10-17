@@ -7,10 +7,10 @@
 const axios = require('axios');
 const util = require('../../../utils');
 
-module.exports = function(orderInfo = {title: '', amount: 0, currency: 'CNY', notify: ''}) {
+module.exports = async function(orderInfo = {title: '', amount: 0, currency: 'CNY', notify: ''}) {
 	const conf = this.config;
 	const apiPath = '/v3/pay/transactions/native';
-	const url = this.$root.apiDomain + apiPath;
+	const url = this.apiDomain + apiPath;
 	const params = {
 		appid       : conf.appId,
 		mchid       : conf.pay.mchId,
@@ -22,13 +22,11 @@ module.exports = function(orderInfo = {title: '', amount: 0, currency: 'CNY', no
 		},
 		notify_url  : orderInfo.notify,
 	};
-	const signatureData = util.v3Sign.call(this, apiPath, params);
+	const signHeader = await this.signHeader(apiPath, 'POST', params);
 	return new Promise((resolve, reject) => {
 		axios.post(url, params, {
 			headers: {
-				'Content-Type' : 'application/json',
-				'Accept'       : 'application/json',
-				'Authorization': `WECHATPAY2-SHA256-RSA2048 mchid="${ conf.pay.mchId }",nonce_str="${ signatureData.nonce }",serial_no="${ conf.pay.serialNo }",timestamp="${ signatureData.timestamp }",signature="${ signatureData.sign }"`
+				...signHeader
 			}
 		}).then(
 				({data}) => {
@@ -41,7 +39,7 @@ module.exports = function(orderInfo = {title: '', amount: 0, currency: 'CNY', no
 						reject({errcode: status, errmsg: statusText, data});
 					}
 					else {
-						reject({errcode: 400});
+						reject({errcode: 500, errmsg: error.message});
 					}
 				}
 		);
