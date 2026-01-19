@@ -6,7 +6,7 @@
 
 const axios = require('axios');
 
-module.exports = function (nSceneId, nExpired = 2592000) {
+module.exports = function (sceneId, nExpired = 2592000) {
 	return this.token().then(
 		sToken => {
 			return new Promise((resolve, reject) => {
@@ -15,7 +15,7 @@ module.exports = function (nSceneId, nExpired = 2592000) {
 					action_name   : 'QR_STR_SCENE',
 					action_info   : {
 						scene: {
-							scene_str: 'TMP_' + nSceneId
+							scene_str: 'TMP_' + sceneId
 						}
 					}
 				}).then(
