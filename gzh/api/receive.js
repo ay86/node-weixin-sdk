@@ -50,7 +50,7 @@ module.exports = function(req) {
 			}
 		}
 
-		if (Object.keys(req.body).length) {
+		if (req.body && Object.keys(req.body).length) {
 			return checkData(req.body);
 		}
 		let data = '';
