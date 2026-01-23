@@ -12,7 +12,7 @@ const cache = util.cache;
 module.exports = function () {
 	const conf = this.config;
 	return new Promise((resolve, reject) => {
-		const sAccessToken = cache.get('wxa.accessToken');
+		const sAccessToken = cache.get(conf.appId);
 		if (!sAccessToken) {
 			axios.get('https://api.weixin.qq.com/cgi-bin/token', {
 				params: {
@@ -26,7 +26,7 @@ module.exports = function () {
 						reject(jRes);
 					}
 					else {
-						cache.set('wxa.accessToken', jRes.access_token, 7000 * 1000);
+						cache.set(conf.appId, jRes.access_token, 7000 * 1000);
 						resolve(jRes.access_token);
 					}
 				},
